@@ -204,11 +204,15 @@ function App() {
         </div>
       </div>
 
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h3>Sorry, you need to login to upload</h3>
-      )}
+      <div className="app__upload">
+        {user?.displayName ? (
+          <ImageUpload username={user.displayName} />
+        ) : (
+          <h3 style={{ textAlign: "center" }}>
+            Sorry, you need to login to upload
+          </h3>
+        )}
+      </div>
     </div>
   );
 }

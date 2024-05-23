@@ -18,6 +18,7 @@ function Post({ username, caption, imageUrl, postId, user }) {
         .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
+          // snapshot.docs.map((doc) => console.log(doc.data().text));
         });
     }
     return () => {
@@ -50,13 +51,18 @@ function Post({ username, caption, imageUrl, postId, user }) {
         <strong>{username}</strong> {caption}
       </h4>
 
-      <div className="post__comments">
-        {comments.map((comment) => {
-          <p>
-            <strong>{comment.username}</strong> {comment.text}
-          </p>;
-        })}
-      </div>
+      {comments ? (
+        <div className="post__comments">
+          <p>Comments</p>
+          {comments.map((comment) => {
+            return (
+              <>
+                <strong>{comment.username}</strong> {comment.text} <br />
+              </>
+            );
+          })}
+        </div>
+      ) : null}
 
       {user && (
         <form className="post__commentBox">
